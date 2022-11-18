@@ -1,4 +1,4 @@
-const ProductForm = ({categories}) => {
+const ProductForm = ({ categories }) => {
   return (
     <section className="">
       <div className="mb-6" id="product-wrapper">
@@ -49,12 +49,16 @@ const ProductForm = ({categories}) => {
               <option className="bg-slate-500 text-slate-400" value="">
                 select a category
               </option>
-              {categories.map((category)=>{
-                return(
-                    <option key={category.id} className="bg-slate-500 text-slate-400" value="">
+              {categories.map((category) => {
+                return (
+                  <option
+                    key={category.id}
+                    className="bg-slate-500 text-slate-400"
+                    value=""
+                  >
                     {category.title}
                   </option>
-                )
+                );
               })}
             </select>
           </div>
@@ -74,9 +78,6 @@ const ProductForm = ({categories}) => {
           </div>
         </form>
       </div>
-      <button className="text-slate-600 text-lg mb-4 font-medium text-center">
-        Add New product?
-      </button>
     </section>
   );
 };
