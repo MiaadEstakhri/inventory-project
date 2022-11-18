@@ -1,4 +1,17 @@
+import { useState } from "react";
+
 const ProductForm = ({ categories }) => {
+  const [productsFormData, setProductsFormData] = useState({
+    title: "",
+    quantity: 0,
+    categoryId: "",
+  });
+
+  const changeHandler = (e) => {
+    const { name, value } = e.target;
+    setProductsFormData({ ...productsFormData, [name]: value });
+  };
+
   return (
     <section className="">
       <div className="mb-6" id="product-wrapper">
@@ -14,10 +27,12 @@ const ProductForm = ({ categories }) => {
               title
             </label>
             <input
+              value={productsFormData.title}
               type="text"
               name="title"
               id="product-title"
               className="bg-transparent rounded-xl border border-slate-500 text-slate-400 w-full md:w-auto px-3"
+              onChange={changeHandler}
             />
           </div>
           <div>
@@ -28,10 +43,12 @@ const ProductForm = ({ categories }) => {
               quantity
             </label>
             <input
+              value={productsFormData.quantity}
               type="number"
-              name="product-quantity"
+              name="quantity"
               id="product-quantity"
               className="bg-transparent rounded-xl border border-slate-500 text-slate-400 w-full md:w-auto px-3"
+              onChange={changeHandler}
             />
           </div>
           <div>
@@ -42,9 +59,11 @@ const ProductForm = ({ categories }) => {
               category
             </label>
             <select
+              value={productsFormData.categoryId}
               id="product-category"
-              name="product-category"
+              name="categoryId"
               className="bg-transparent rounded-xl text-slate-400 w-full"
+              onChange={changeHandler}
             >
               <option className="bg-slate-500 text-slate-400" value="">
                 select a category
@@ -54,7 +73,7 @@ const ProductForm = ({ categories }) => {
                   <option
                     key={category.id}
                     className="bg-slate-500 text-slate-400"
-                    value=""
+                    value={category.id}
                   >
                     {category.title}
                   </option>
