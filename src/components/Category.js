@@ -6,6 +6,7 @@ const CategoryForm = () => {
     title: "",
     description: "",
   });
+  const [categories, setCategories] = useState([]);
 
   const cancelFormHandler = (e) => {
     e.preventDefault();
@@ -15,6 +16,16 @@ const CategoryForm = () => {
   const changeHandler = (e) => {
     const { name, value } = e.target;
     setCategoryFormData({ ...categoryFormData, [name]: value });
+  };
+
+  const addNewCategoryHandler = (e) => {
+    e.preventDefault();
+    const newCategory = {
+      ...categoryFormData,
+      createdAt: new Date().toISOString(),
+    };
+    setCategories([...categories, newCategory]);
+    setCategoryFormData({ title: "", description: "" });
   };
 
   return (
@@ -67,6 +78,7 @@ const CategoryForm = () => {
             <button
               className="flex-1 bg-slate-500 text-slate-200 rounded-xl py-2"
               id="add-new-category"
+              onClick={addNewCategoryHandler}
             >
               Add Category
             </button>
