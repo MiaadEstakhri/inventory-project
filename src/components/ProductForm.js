@@ -6,10 +6,22 @@ const ProductForm = ({ categories }) => {
     quantity: 0,
     categoryId: "",
   });
+  const [products, setProducts] = useState([]);
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
     setProductsFormData({ ...productsFormData, [name]: value });
+  };
+
+  const addNewProductHandler = (e) => {
+    e.preventDefault();
+    const newProduct = {
+      ...productsFormData,
+      createdAt: new Date().toISOString(),
+      id: new Date().getTime(),
+    };
+    setProducts((prevState) => [...prevState, newProduct]);
+    setProductsFormData({ title: "", quantity: "", categoryId: "" });
   };
 
   return (
@@ -83,16 +95,11 @@ const ProductForm = ({ categories }) => {
           </div>
           <div className="flex items-center justify-between gap-x-4 mb-4">
             <button
-              className="flex-1 border border-slate-400 text-slate-400 rounded-xl py-2"
-              id="cancel-add-product"
-            >
-              Cancel
-            </button>
-            <button
               className="flex-1 bg-slate-500 text-slate-200 rounded-xl py-2"
               id="add-new-product"
+              onClick={addNewProductHandler}
             >
-              Add product
+              Add new product
             </button>
           </div>
         </form>
