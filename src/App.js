@@ -43,6 +43,25 @@ function App() {
     });
   };
 
+  useEffect(() => {
+    const saveProducts = JSON.parse(localStorage.getItem("products")) || [];
+    const saveCategories = JSON.parse(localStorage.getItem("categories")) || [];
+    setProducts(saveProducts);
+    setCategories(saveCategories);
+  }, []);
+
+  useEffect(() => {
+    if (products.length) {
+      localStorage.setItem("products", JSON.stringify(products));
+    }
+  }, [products]);
+
+  useEffect(() => {
+    if (categories.length) {
+      localStorage.setItem("categories", JSON.stringify(categories));
+    }
+  }, [categories]);
+
   return (
     <div className="">
       <section className="bg-slate-800 min-h-screen">

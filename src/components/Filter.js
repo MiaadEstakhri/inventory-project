@@ -29,7 +29,7 @@ const Filter = ({ onSearch, onSort, sort, searchValue }) => {
           onChange={onSort}
         >
           <option className="bg-slate-500 text-slate-300" value="">
-            select a category
+            All
           </option>
           <option className="bg-slate-500 text-slate-300" value="latest">
             latest
